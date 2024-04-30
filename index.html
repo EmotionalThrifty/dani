@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Emily & Dani</title>
+    <style>
+        html,
+        body {
+            padding: 0px;
+            margin: 0px;
+            height: 100vh;
+            width: 100vw;
+            font-family: 'Noto Sans JP', sans-serif;
+            background-color: #f4f1de;
+            color: #3c403d;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        #countdown {
+            text-align: center;
+            background: #a8dadc;
+            border: 5px solid #457b9d;
+            padding: 20px;
+            border-radius: 10px;
+        }
+
+        .time {
+            font-size: 2em;
+            padding: 10px;
+            border-radius: 5px;
+            background: #f1faee;
+            margin: 10px;
+            display: inline-block;
+            min-width: 60px;
+        }
+        .main-container {
+            padding: 0px;
+            margin: 0px;
+            height: 100vh;
+            width: 100vw;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="main-container">
+        <div id="countdown">
+            <div class="time" id="days"></div>
+            <div class="time" id="hours"></div>
+            <div class="time" id="minutes"></div>
+            <div class="time" id="seconds"></div>
+        </div>
+    </div>
+</body>
+</html>
+<script>
+    function countdown(endDate) {
+        let days, hours, minutes, seconds;
+        
+        endDate = new Date(endDate).getTime();
+
+        if (isNaN(endDate)) {
+            return;
+        }
+
+        setInterval(calculate, 1000);
+
+        function calculate() {
+            let startDate = new Date().getTime();
+            let timeRemaining = parseInt((endDate - startDate) / 1000);
+
+            if (timeRemaining >= 0) {
+                days = parseInt(timeRemaining / 86400);
+                timeRemaining = (timeRemaining % 86400);
+                
+                hours = parseInt(timeRemaining / 3600);
+                timeRemaining = (timeRemaining % 3600);
+
+                minutes = parseInt(timeRemaining / 60);
+                seconds = parseInt(timeRemaining % 60);
+
+                document.getElementById("days").innerText = parseInt(days, 10);
+                document.getElementById("hours").innerText = ("0" + hours).slice(-2);
+                document.getElementById("minutes").innerText = ("0" + minutes).slice(-2);
+                document.getElementById("seconds").innerText = ("0" + seconds).slice(-2);
+            } else {
+                return;
+            }
+        }
+    }
+
+    countdown('December 31, 2024 23:59:59');
+</script>
