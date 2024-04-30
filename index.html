@@ -1,110 +1,368 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Emily & Dani</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@100..900&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@100..900&display=swap"
+      rel="stylesheet"
+    />
     <style>
-        html,
-        body {
-            padding: 0px;
-            margin: 0px;
-            height: 100vh;
-            width: 100vw;
-            font-family: 'Noto Sans JP', sans-serif;
-            background-color: #f4f1de;
-            color: #3c403d;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            margin: 0;
+      .main-container {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        background-image: url("bild1.jpg");
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+      }
+
+      body {
+        display: grid;
+        background: #183059;
+        padding: 0;
+        margin: 0;
+      }
+
+      .container {
+        position: relative;
+        overflow: hidden;
+        width: 650px;
+        height: 480px;
+      }
+
+      h1 {
+        font-family: "Noto Sans JP", sans-serif;
+        text-align: center;
+        margin-top: 2em;
+        text-transform: uppercase;
+        letter-spacing: 5px;
+        color: #f6f4f3;
+      }
+
+      #timer {
+        color: #f6f4f3;
+        text-align: center;
+        text-transform: uppercase;
+        font-family: "Noto Sans JP", sans-serif;
+        font-size: 0.7em;
+        letter-spacing: 5px;
+        margin-top: 25%;
+      }
+
+      .days,
+      .hours,
+      .minutes,
+      .seconds {
+        display: inline-block;
+        padding: 20px;
+        width: 100px;
+        border-radius: 5px;
+      }
+
+      .days {
+        background: #ef2f3c;
+      }
+
+      .hours {
+        background: #f6f4f3;
+        color: #183059;
+      }
+
+      .minutes {
+        background: #276fbf;
+      }
+
+      .seconds {
+        background: #f0a202;
+      }
+
+      .numbers {
+        font-family: "Noto Sans JP", sans-serif;
+        color: #f6f4f3;
+        font-size: 4em;
+      }
+
+      .white {
+        position: absolute;
+        background: #f6f4f3;
+        height: 85px;
+        width: 75px;
+        left: 30%;
+        top: 2%;
+
+        .triangle {
+          border-bottom: 14px solid #f6f4f3;
         }
 
-        #countdown {
-            text-align: center;
-            background: #a8dadc;
-            border: 5px solid #457b9d;
-            padding: 20px;
-            border-radius: 10px;
+        .string {
+          background: #f6f4f3;
+          border: 1px solid #f6f4f3;
+        }
+      }
+
+      .red {
+        position: absolute;
+        background: #ef2f3c;
+        left: 18%;
+        top: 9%;
+        height: 65px;
+        width: 70px;
+
+        .triangle {
+          border-bottom: 14px solid #ef2f3c;
         }
 
-        .time {
-            font-size: 2em;
-            padding: 10px;
-            border-radius: 5px;
-            background: #f1faee;
-            margin: 10px;
-            display: inline-block;
-            min-width: 60px;
+        .string {
+          background: #ef2f3c;
+          border: 1px solid #ef2f3c;
         }
-        .unit {
-            font-size: 0.8em;
-            font-family: 'Noto Sans JP', sans-serif;
-            color: #1d3557;
-            padding-left: 5px;
+      }
+
+      .blue {
+        position: absolute;
+        background: #276fbf;
+        height: 80px;
+        width: 80px;
+        left: 60%;
+        top: 5%;
+
+        .triangle {
+          border-bottom: 14px solid #276fbf;
         }
-        .main-container {
-            padding: 0px;
-            margin: 0px;
-            height: 100vh;
-            width: 100vw;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
+
+        .string {
+          background: #276fbf;
+          border: 1px solid #276fbf;
         }
+      }
+
+      .balloon {
+        border: 1px solid #000;
+        border-radius: 50% 50% 50% 50%/ 40% 40% 60% 60%;
+        z-index: 2;
+      }
+
+      .eye {
+        position: absolute;
+        width: 7px;
+        height: 7px;
+        top: 40%;
+        left: 22%;
+        background: #000;
+        border-radius: 50%;
+
+        &:after {
+          content: "";
+          left: 35px;
+          width: 7px;
+          height: 7px;
+          border-radius: 50%;
+          background: #000;
+          position: absolute;
+        }
+      }
+
+      .mouth {
+        position: absolute;
+        top: 45%;
+        left: 43%;
+        width: 7px;
+        height: 7px;
+        border-radius: 50%;
+      }
+
+      .happy {
+        border: 2px solid;
+        border-color: transparent #000 #000 transparent;
+        transform: rotate(45deg);
+      }
+
+      .triangle {
+        position: absolute;
+        left: 40%;
+        bottom: -10%;
+        width: 0;
+        height: 0;
+        border-left: 7px solid transparent;
+        border-right: 7px solid transparent;
+      }
+
+      .string {
+        position: absolute;
+        height: 70px;
+        width: 1px;
+        left: 48%;
+        top: 100%;
+        z-index: -1;
+      }
+
+      .star {
+        width: 20px;
+        height: 20px;
+        background: #f6f4f3;
+        -webkit-clip-path: polygon(
+          50% 0%,
+          61% 35%,
+          98% 35%,
+          68% 57%,
+          79% 91%,
+          50% 70%,
+          21% 91%,
+          32% 57%,
+          2% 35%,
+          39% 35%
+        );
+        clip-path: polygon(
+          50% 0%,
+          61% 35%,
+          98% 35%,
+          68% 57%,
+          79% 91%,
+          50% 70%,
+          21% 91%,
+          32% 57%,
+          2% 35%,
+          39% 35%
+        );
+      }
+
+      .star-red {
+        width: 30px;
+        height: 30px;
+        margin-left: 51px;
+        margin-top: -5px;
+        background: #ef2f3c;
+        -webkit-clip-path: polygon(
+          50% 0%,
+          61% 35%,
+          98% 35%,
+          68% 57%,
+          79% 91%,
+          50% 70%,
+          21% 91%,
+          32% 57%,
+          2% 35%,
+          39% 35%
+        );
+        clip-path: polygon(
+          50% 0%,
+          61% 35%,
+          98% 35%,
+          68% 57%,
+          79% 91%,
+          50% 70%,
+          21% 91%,
+          32% 57%,
+          2% 35%,
+          39% 35%
+        );
+      }
+
+      footer {
+        position: fixed;
+        bottom: 0;
+        right: 0;
+        text-transform: uppercase;
+        padding: 10px;
+        font-family: "Noto Sans JP", sans-serif;
+        font-size: 0.7em;
+
+        p {
+          letter-spacing: 3px;
+          color: #ef2f3c;
+        }
+
+        a {
+          color: #f6f4f3;
+          text-decoration: none;
+
+          &:hover {
+            color: #276fbf;
+          }
+        }
+      }
     </style>
-</head>
-<body>
+  </head>
+  <body>
     <div class="main-container">
-        <div id="countdown">
-            <div class="time" id="days"><span class="unit">Tage</span></div>
-            <div class="time" id="hours"><span class="unit">Stunden</span></div>
-            <div class="time" id="minutes"><span class="unit">Minuten</span></div>
-            <div class="time" id="seconds"><span class="unit">Sekunden</span></div>
+      <h1>Emily & Dani</h1>
+      <div class="container">
+        <div class="balloon white">
+          <div class="star-red"></div>
+          <div class="face">
+            <div class="eye"></div>
+            <div class="mouth happy"></div>
+          </div>
+          <div class="triangle"></div>
+          <div class="string"></div>
         </div>
+
+        <div class="balloon red">
+          <div class="star"></div>
+          <div class="face">
+            <div class="eye"></div>
+            <div class="mouth happy"></div>
+          </div>
+          <div class="triangle"></div>
+          <div class="string"></div>
+        </div>
+
+        <div class="balloon blue">
+          <div class="star"></div>
+          <div class="face">
+            <div class="eye"></div>
+            <div class="mouth happy"></div>
+          </div>
+          <div class="triangle"></div>
+          <div class="string"></div>
+        </div>
+        <div id="timer"></div>
+      </div>
     </div>
-</body>
+  </body>
 </html>
 <script>
-    function countdown(endDate) {
-        let days, hours, minutes, seconds;
-        
-        endDate = new Date(endDate).getTime();
+  const targetDate = new Date("July 19, 2023 00:30:00.000").getTime();
 
-        if (isNaN(endDate)) {
-            return;
-        }
+  // countdown
+  let timer = setInterval(() => {
+    // get today's date
+    const today = new Date().getTime();
 
-        setInterval(calculate, 1000);
+    // get the difference
+    let diff = today - targetDate;
 
-        function calculate() {
-            let startDate = new Date().getTime();
-            let timeRemaining = parseInt((endDate - startDate) / 1000);
+    // math
+    let days = Math.floor(diff / (1000 * 60 * 60 * 24));
+    let hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    let minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+    let seconds = Math.floor((diff % (1000 * 60)) / 1000);
 
-            if (timeRemaining >= 0) {
-                days = parseInt(timeRemaining / 86400);
-                timeRemaining = (timeRemaining % 86400);
-                
-                hours = parseInt(timeRemaining / 3600);
-                timeRemaining = (timeRemaining % 3600);
-
-                minutes = parseInt(timeRemaining / 60);
-                seconds = parseInt(timeRemaining % 60);
-
-                document.getElementById("days").innerText = parseInt(days, 10);
-                document.getElementById("hours").innerText = ("0" + hours).slice(-2);
-                document.getElementById("minutes").innerText = ("0" + minutes).slice(-2);
-                document.getElementById("seconds").innerText = ("0" + seconds).slice(-2);
-            } else {
-                return;
-            }
-        }
-    }
-
-    countdown('December 31, 2024 23:59:59');
+    // display
+    document.getElementById("timer").innerHTML =
+      '<div class="days"> \
+  <div class="numbers">' +
+      days +
+      '</div>Tage</div> \
+<div class="hours"> \
+  <div class="numbers" style="color: #183059">' +
+      hours +
+      '</div>Stunden</div> \
+<div class="minutes"> \
+  <div class="numbers">' +
+      minutes +
+      '</div>Minuten</div> \
+<div class="seconds"> \
+  <div class="numbers">' +
+      seconds +
+      "</div>Sekunden</div> \
+</div>";
+  }, 1000);
 </script>
